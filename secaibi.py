@@ -5,7 +5,7 @@ import sys
 from mimetypes import MimeTypes
 import urllib
 
-cur_file = sys.argv[1] if len(sys.argv) > 1 else '~/Downloads/ju.png'
+cur_file = sys.argv[1] if len(sys.argv) > 1 else '/Users/zhonglvgui/Downloads/ju.png'
 mime = MimeTypes()
 url = urllib.pathname2url(cur_file)
 mime_type = mime.guess_type(url)[0]
@@ -42,8 +42,7 @@ if 'id' in upfile_dict and upfile_dict['id']:
 
     if 'success' in dofile_dict and dofile_dict['success']:
         dstid = dofile_dict['dstid']
-        # file_name = '.'.join(os.path.basename(cur_file).split('.')[:-1])
-        cmd = "curl 'https://www.secaibi.com/designtools/api/image/{}.bin?filename=ju.jpeg' -o {}"
+        cmd = "curl 'https://www.secaibi.com/designtools/api/image/{}.bin?filename=ju.jpeg' -o '{}'"
         file = subprocess.Popen(cmd.format(dstid, cur_file), shell=True, stdout=subprocess.PIPE).stdout.read()
-        subprocess.Popen('echo ok', shell=True, stdout=subprocess.PIPE).stdout.read()
-sys.exit()
+        subprocess.Popen(r'echo -e \\x07', shell=True, stdout=subprocess.PIPE).stdout.read()
+# sys.exit()
